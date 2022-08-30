@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Col } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getPokemons } from './api/';
+
+import { setPokemonsAction } from './actions';
 
 import Searcher from './components/Searcher';
 import PokemonList from './components/PokemonList';
@@ -11,12 +14,13 @@ import logo from './statics/logo.svg';
 import './App.css';
 
 function App() {
-  const [pokemons, setPokemons] = useState([]);
+  const pokemons = useSelector((state) => state.pokemons);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemons();
-      setPokemons(pokemonsRes);
+      dispatch(setPokemonsAction(pokemonsRes));
     };
     fetchPokemons();
   }, []);
