@@ -2,7 +2,7 @@
 
 ## Deploy URLs
 
-[Production](Link netlify)
+[Production](https://pokeapi-platzi-redux.netlify.app/)
 
 
 # Getting Started with Create React App
