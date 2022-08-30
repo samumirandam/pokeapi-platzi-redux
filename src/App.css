@@ -3,3 +3,7 @@
 .App {
   margin-top: 3rem;
 }
+
+.App__logo {
+  margin-bottom: 3rem;
+}
