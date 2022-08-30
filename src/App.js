@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getPokemons } from './api/';
+import { getPokemons, getPokemonDetails } from './api/';
 
 import { setPokemonsAction } from './actions';
 
@@ -20,8 +20,12 @@ function App() {
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemons();
-      dispatch(setPokemonsAction(pokemonsRes));
+      const pokemonsDetailed = await Promise.all(
+        pokemonsRes.map((pokemon) => getPokemonDetails(pokemon))
+      );
+      dispatch(setPokemonsAction(pokemonsDetailed));
     };
+
     fetchPokemons();
   }, []);
 
